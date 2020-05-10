@@ -4,7 +4,14 @@
   "description": "前端工程创建",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.config.client.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.config.server.js",
+    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
+    "dev:server": "cross-env NODE_ENV=development node server/server.js",
+    "clear": "rimraf dist",
+    "build": "npm run clear && npm run build:client && npm run build:server",
+    "lint": "eslint --ext .jsx --ext .js client/"
   },
   "repository": {
     "type": "git",
@@ -46,9 +53,11 @@
     "react-simplemde-editor": "^3.6.11",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "^2.4.5",
-    "simplemde": "^1.11.2"
+    "simplemde": "^1.11.2",
+    "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.0.0-beta.46",
     "babel-core": "^6.26.0",
     "babel-eslint": "7.2.3",
     "babel-loader": "^7.1.2",
