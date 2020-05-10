@@ -1,0 +1,19 @@
+{
+  "name": "webengine",
+  "version": "1.0.0",
+  "description": "前端工程创建",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myfirst-hub/webEngine.git"
+  },
+  "author": "sun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myfirst-hub/webEngine/issues"
+  },
+  "homepage": "https://github.com/myfirst-hub/webEngine#readme"
+}
