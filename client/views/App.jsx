@@ -10,6 +10,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    // return <div>this is app 1235</div>
     return [
       <div key="banner">
         <Link to="/">首页</Link>

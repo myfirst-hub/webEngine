@@ -1,5 +1,5 @@
 const express = require('express')
-// const favicon = require('serve-favicon')
+const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 // const serverRender = require('./util/server-render')
@@ -22,7 +22,7 @@ app.use(session({
   secret: 'react cnode class'
 }))
 
-// app.use(favicon(path.join(__dirname, '../favicon.ico')))
+app.use(favicon(path.join(__dirname, '../favicon.ico')))
 
 app.use('/api/user', require('./util/handle-login'))
 app.use('/api', require('./util/proxy'))

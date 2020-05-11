@@ -31,7 +31,7 @@ import appState from './store/app-state'
 
 const root = document.getElementById('root')
 const render = (Component) => {
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <AppContainer>
       <Provider appState={appState}>
         <BrowserRouter>
