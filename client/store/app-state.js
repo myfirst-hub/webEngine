@@ -5,13 +5,13 @@ import {
   autorun,
 } from 'mobx'
 
-class AppState {
-  // constructor({ count, name } = { count: 0, name: 'Jokcy' }) {
-  //   this.count = count
-  //   this.name = name
-  // }
-  @observable count = 0
-  @observable name = 'jack'
+export default class AppState {
+  constructor({ count, name } = { count: 0, name: 'Jokcy' }) {
+    this.count = count
+    this.name = name
+  }
+  @observable count
+  @observable name
   @computed get msg() {
     return `${this.name} say count is ${this.count}`
   }
@@ -21,18 +21,10 @@ class AppState {
   @action changeName(name) {
     this.name = name
   }
-  // toJson() {
-  //   return {
-  //     count: this.count,
-  //     name: this.name,
-  //   }
-  // }
+  toJson() {
+    return {
+      count: this.count,
+      name: this.name,
+    }
+  }
 }
-
-const appState = new AppState()
-
-autorun(() => {
-  console.log('AppState.msg......', appState.msg)
-})
-
-export default appState

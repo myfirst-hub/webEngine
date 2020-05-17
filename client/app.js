@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Router } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 
@@ -8,7 +8,7 @@ import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 // import { lightBlue, pink } from 'material-ui/colors'
 
 import App from './views/App'
-import appState from './store/app-state'
+import AppState from './store/app-state'
 
 // ReactDOM.hydrate(<App />, document.getElementById('root'))
 
@@ -29,11 +29,13 @@ import appState from './store/app-state'
 //   return Main
 // }
 
+const initialState = window.__INITIAL__STATE__ || {} // eslint-disable-line
+
 const root = document.getElementById('root')
 const render = (Component) => {
   ReactDOM.hydrate(
     <AppContainer>
-      <Provider appState={appState}>
+      <Provider appState={new AppState(initialState.appState)}>
         <BrowserRouter>
           <Component />
         </BrowserRouter>
