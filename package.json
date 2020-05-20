@@ -12,7 +12,7 @@
     "clear": "rimraf dist",
     "build": "npm run clear && npm run build:client && npm run build:server",
     "lint": "eslint --ext .jsx --ext .js client/",
-    "start": "node server/server.js"
+    "start": "cross-env NODE_ENV=production node server/server.js"
   },
   "repository": {
     "type": "git",
