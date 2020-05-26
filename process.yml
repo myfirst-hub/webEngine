@@ -1,0 +1,6 @@
+apps:
+  - script: ./server/server.js
+    name: jnode-018
+    env_production:
+      NODE_ENV: production
+      HOST: localhost

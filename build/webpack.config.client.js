@@ -3,6 +3,9 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
 const HTMLPlugin = require('html-webpack-plugin')
+const nameAllModulesPlugin = require('name-all-modules-plugin')
+
+const cdnConfig = require('../app.config').cdn
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -26,6 +29,7 @@ const config = webpackMerge(baseConfig, {
 
 // localhost:8888/filename
 if (isDev) {
+  config.devtool = '#cheap-module-eval-source-map'
   config.entry = {
     app: [
       'react-hot-loader/patch',
@@ -50,6 +54,46 @@ if (isDev) {
     }
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
+} else {
+  config.entry = {
+    app: path.join(__dirname, '../client/app.js'),
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'mobx',
+      'mobx-react',
+      'axios',
+      'query-string',
+      'dateformat',
+      'marked'
+    ]
+  }
+  config.output.filename = '[name].[chunkhash].js'
+  config.output.publicPath = cdnConfig.host
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      'name': 'vendor'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      'name': 'manifest',
+      'minChunks': Infinity
+    }),
+    new webpack.NamedModulesPlugin(),
+    new nameAllModulesPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.NamedChunksPlugin((chunk) => {
+      if (chunk.name) {
+        return chunk.name
+      }
+      return chunk.mapModules(m => path.relative(m.context, m.request)).join('_')
+    })
+  )
 }
 
 module.exports = config
