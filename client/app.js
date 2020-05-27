@@ -4,19 +4,8 @@ import { BrowserRouter, Router } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import { lightBlue, pink } from 'material-ui/colors'
-
 import App from './views/App'
 import AppState from './store/app-state'
-
-const theme = createMuiTheme({
-  palette: {
-    primary: lightBlue,
-    accent: pink,
-    type: 'light',
-  },
-})
 
 // ReactDOM.hydrate(<App />, document.getElementById('root'))
 
@@ -45,9 +34,7 @@ const render = (Component) => {
     <AppContainer>
       <Provider appState={new AppState(initialState.appState)}>
         <BrowserRouter>
-          <MuiThemeProvider theme={theme}>
-            <Component />
-          </MuiThemeProvider>
+          <Component />
         </BrowserRouter>
       </Provider>
     </AppContainer>,
