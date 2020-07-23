@@ -9,8 +9,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   module: {
-    rules: [
-      {
+    rules: [{
         enforce: 'pre',
         test: /.(js|jsx)$/,
         loader: 'eslint-loader',
@@ -19,15 +18,24 @@ module.exports = {
         ]
       },
       {
-        test: /.jsx$/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /.js$/,
+        test: /.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: [
           path.join(__dirname, '../node_modules')
         ]
+      },
+      {
+        'test': /\.css$/,
+        'loader': ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        'test': /\.less$/,
+        'loader': ['style-loader', 'css-loader', {
+          'loader': 'less-loader',
+          'options': {
+            'javascriptEnabled': true,
+          }
+        }],
       }
     ]
   },

@@ -5,6 +5,7 @@ import {
 } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Input } from 'antd'
 
 import { AppState } from '../../store/app-state'
 
@@ -41,6 +42,7 @@ export default class TopicList extends React.Component {
         </Helmet>
         <input type="text" onChange={this.changeName} />
         <span>{this.props.appState.msg}</span>
+        <Input />
       </div>
     )
   }
