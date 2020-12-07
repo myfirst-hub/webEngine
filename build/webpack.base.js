@@ -36,7 +36,15 @@ module.exports = {
             'javascriptEnabled': true,
           }
         }],
-      }
+      },
+      {
+        'test': /\.(png|jpg|gif)$/,
+        'use': [
+            {
+                'loader': 'url-loader?limit=8192&name=static/[name].[hash:8].[ext]'
+            }
+        ]
+    },
     ]
   },
 }
