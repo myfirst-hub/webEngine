@@ -40,6 +40,7 @@
     "ejs-compiled-loader": "^1.1.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "isomorphic-style-loader": "^5.1.0",
     "jss": "^9.3.3",
     "jss-preset-default": "^4.0.1",
     "less": "^3.9",

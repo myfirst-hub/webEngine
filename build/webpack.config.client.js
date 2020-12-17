@@ -16,6 +16,23 @@ const config = webpackMerge(baseConfig, {
   output: {
     filename: '[name].[hash].js',
   },
+  module: {
+    rules: [
+      {
+        'test': /\.css$/,
+        'loader': ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        'test': /\.less$/,
+        'loader': ['style-loader', 'css-loader', {
+          'loader': 'less-loader',
+          'options': {
+            'javascriptEnabled': true,
+          }
+        }],
+      },
+    ]
+  },
   plugins: [
     new HTMLPlugin({
       template: path.join(__dirname, '../client/template.html')

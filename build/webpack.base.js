@@ -25,19 +25,6 @@ module.exports = {
         ]
       },
       {
-        'test': /\.css$/,
-        'loader': ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        'test': /\.less$/,
-        'loader': ['style-loader', 'css-loader', {
-          'loader': 'less-loader',
-          'options': {
-            'javascriptEnabled': true,
-          }
-        }],
-      },
-      {
         'test': /\.(png|jpg|gif)$/,
         'use': [
             {

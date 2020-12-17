@@ -12,4 +12,21 @@ module.exports = webpackMerge(baseConfig, {
     filename: 'server-entry.js',
     libraryTarget: 'commonjs2'
   },
+  module: {
+    rules: [
+      {
+        'test': /\.css$/,
+        'loader': ['isomorphic-style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        'test': /\.less$/,
+        'loader': ['isomorphic-style-loader', 'css-loader', {
+          'loader': 'less-loader',
+          'options': {
+            'javascriptEnabled': true,
+          }
+        }],
+      },
+    ]
+  },
 })
