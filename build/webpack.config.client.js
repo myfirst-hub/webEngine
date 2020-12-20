@@ -87,7 +87,7 @@ if (isDev) {
     ]
   }
   config.output.filename = '[name].[chunkhash].js'
-  config.output.publicPath = cdnConfig.host
+  config.output.publicPath = '' //cdnConfig.host
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({

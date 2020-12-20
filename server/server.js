@@ -38,6 +38,7 @@ if (!isDev) {
     serverRender(serverEntry, template, req, res).catch(next)
   })
 } else {
+  process.env.PORT = 3000;
   const devStatic = require('./util/dev-static')
   devStatic(app)
 }
@@ -51,5 +52,5 @@ const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '3333'
 
 app.listen(port, host, function () {
-  console.log('server is listening on 3333')
+  console.log(`server is listening on ${port}`)
 })
